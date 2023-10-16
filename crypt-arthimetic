@@ -1,0 +1,28 @@
+from itertools import permutations
+def is_valid_solution(letters, base, ball, games):
+    if letters[base[0]] == 0 or letters[ball[0]] == 0 or letters[games[0]] == 0:
+        return False
+    base_num = int(''.join([str(letters[ch]) for ch in base]))
+    ball_num = int(''.join([str(letters[ch]) for ch in ball]))
+    games_num = int(''.join([str(letters[ch]) for ch in games]))
+    return base_num + ball_num == games_num
+def solve_cryptarithmetic_puzzle():
+    letters = {}
+    for letter in 'baseballgames':
+        letters[letter] = -1
+    base = 'base'
+    ball = 'ball'
+    games = 'games'
+    letter_values = list(range(10))
+    for permutation in permutations(letter_values):
+        for i, letter in enumerate(letters):
+            letters[letter] = permutation[i]
+        if is_valid_solution(letters, base, ball, games):
+            print("Solution found:")
+            print(f"{base}: {int(''.join([str(letters[ch]) for ch in base]))}")
+            print(f"{ball}: {int(''.join([str(letters[ch]) for ch in ball]))}")
+            print(f"{games}: {int(''.join([str(letters[ch]) for ch in games]))}")
+            return
+    print("No solution found.")
+if __name__ == "__main__":
+    solve_cryptarithmetic_puzzle()
