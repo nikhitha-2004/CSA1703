@@ -1,0 +1,20 @@
+student(john).
+student(mary).
+student(alex).
+teacher(professor_smith).
+teacher(professor_jones).
+teacher(dr_davis).
+subject(math, code_123).
+subject(history, code_456).
+subject(chemistry, code_789).
+teaches(professor_smith, math, code_123).
+teaches(professor_jones, history, code_456).
+teaches(dr_davis, chemistry, code_789).
+enrolled_in(john, math).
+enrolled_in(mary, history).
+enrolled_in(alex, chemistry).
+enrolled_subject(Student, Subject, Code) :-
+    enrolled_in(Student, Subject),
+    subject(Subject, Code).
+teaches_subject(Teacher, Subject, Code) :-
+    teaches(Teacher, Subject, Code).
